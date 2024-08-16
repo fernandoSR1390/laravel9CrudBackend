@@ -67,14 +67,14 @@ The Laravel framework is open-sourced software licensed under the [MIT license](
 
 ## Posibles Errores y Permisos
 
- 1.- Verifica los Permisos de la Carpeta storage
-    - php chmod -R 775 storage
-    - php chmod -R 775 bootstrap/cache
+- 1.- Verifica los Permisos de la Carpeta storage:
+- php chmod -R 775 storage
+- php chmod -R 775 bootstrap/cache
 
- 2.- Asegúrate de que el Enlace Simbólico de storage esté Creado
-    - php artisan storage:link
+- 2.- Asegúrate de que el Enlace Simbólico de storage esté Creado:
+- php artisan storage:link
 
- 3.- Limpia la Caché de Vistas y Configuración
-    - php artisan view:clear
-    - php artisan config:clear
-    - php artisan cache:clear
+- 3.- Limpia la Caché de Vistas y Configuración:
+- php artisan view:clear
+- php artisan config:clear
+- php artisan cache:clear
