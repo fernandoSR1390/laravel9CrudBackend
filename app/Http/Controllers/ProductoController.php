@@ -27,8 +27,6 @@ class ProductoController extends Controller
      */
     public function create()
     {
-        //return view('productos.create');
-
         $categorias = Categoria::all();
         return view('productos.create', compact('categorias'));
     }
@@ -57,6 +55,7 @@ class ProductoController extends Controller
         $producto->cantidad = $request->cantidad;
         $producto->categoria_id = $request->categoria_id;
         $producto->imagen = $request->imagen;
+        // Manejo de la imagen
         if ($request->hasFile('imagen')) {
             // Eliminar la imagen anterior si existe
             if ($producto->imagen) {
@@ -91,8 +90,6 @@ class ProductoController extends Controller
      */
     public function edit(Producto $producto)
     {
-        //return view('productos.edit', compact('producto'));
-
         $categorias = Categoria::all();
         return view('productos.edit', compact('producto', 'categorias'));
     }
