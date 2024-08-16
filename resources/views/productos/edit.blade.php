@@ -9,7 +9,7 @@
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 text-gray-900 dark:text-gray-100">
-                    <div class="container">
+                    <div class="form-container">
                         <h1>Editar Producto</h1>
                         <form action="{{ route('productos.update', $producto->id) }}" method="POST" enctype="multipart/form-data">
                             @csrf
@@ -59,6 +59,7 @@
                                     <img src="{{ asset('storage/' . $producto->imagen) }}" alt="Imagen del Producto" class="img-thumbnail mt-2" width="150">
                                 @endif
                             </div>
+                            <a href="{{ route('productos.index') }}" class="btn btn-secondary">Volver</a>
                             <button type="submit" class="btn btn-primary">Actualizar</button>
                         </form>
                     </div>
