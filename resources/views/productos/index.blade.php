@@ -41,14 +41,14 @@
                                     <td>{{ $loop->iteration }}</td>
                                     <td>
                                         @if($producto->imagen)
-                                            <img src="{{ asset('storage/' . $producto->imagen) }}" alt="Imagen del Producto" class="img-thumbnail" width="100">
+                                            <img src="{{ asset('storage/' . $producto->imagen) }}" alt="Imagen del Producto" class="img-thumbnail" width="150">
                                         @else
                                             <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/d/da/Imagen_no_disponible.svg/768px-Imagen_no_disponible.svg.png" alt="Imagen del Producto" class="img-thumbnail" width="50"/>
                                         @endif
                                     </td>
                                     <td>{{ $producto->nombre }}</td>
                                     <td>{{ $producto->descripcion }}</td>
-                                    <td>{{ $producto->precio }}</td>
+                                    <td>{{ $producto->precio . ' Bs.' }}</td>
                                     <td>{{ $producto->cantidad }}</td>
                                     <td>
                                         <a href="{{ route('productos.show', $producto->id) }}" type="button" class="btn btn-info">Ver</a>

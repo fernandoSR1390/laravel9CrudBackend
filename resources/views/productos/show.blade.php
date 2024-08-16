@@ -19,7 +19,7 @@
                                 <img src="{{ asset('storage/' . $producto->imagen) }}" alt="Imagen del Producto" class="img-fluid mb-3" width="200">
                             @endif
                             <p class="card-text"><strong>Descripción:</strong> {{ $producto->descripcion }}</p>
-                            <p class="card-text"><strong>Precio:</strong> ${{ $producto->precio }}</p>
+                            <p class="card-text"><strong>Precio:</strong> Bs. {{ $producto->precio }}</p>
                             <p class="card-text"><strong>Cantidad:</strong> {{ $producto->cantidad }}</p>
 
                             <!-- Mostrar la categoría del producto -->
