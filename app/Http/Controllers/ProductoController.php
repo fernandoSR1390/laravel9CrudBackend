@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Categoria;
 use App\Models\Producto;
 use Illuminate\Http\Request;
 
@@ -25,7 +26,10 @@ class ProductoController extends Controller
      */
     public function create()
     {
-        return view('productos.create');
+        //return view('productos.create');
+
+        $categorias = Categoria::all();
+        return view('productos.create', compact('categorias'));
     }
 
     /**
@@ -41,6 +45,7 @@ class ProductoController extends Controller
             'descripcion' => 'required',
             'precio' => 'required|numeric|min:1',
             'cantidad' => 'required|integer|min:1',
+            'categoria_id' => 'required|exists:categorias,id',
         ]);
 
         $producto = new Producto();
@@ -48,6 +53,7 @@ class ProductoController extends Controller
         $producto->descripcion = $request->descripcion;
         $producto->precio = $request->precio;
         $producto->cantidad = $request->cantidad;
+        $producto->categoria_id = $request->categoria_id;
         $producto->save();
 
         return redirect()->route('productos.index')->with('success', 'Producto creado con éxito.');
@@ -72,7 +78,10 @@ class ProductoController extends Controller
      */
     public function edit(Producto $producto)
     {
-        return view('productos.edit', compact('producto'));
+        //return view('productos.edit', compact('producto'));
+
+        $categorias = Categoria::all();
+        return view('productos.edit', compact('producto', 'categorias'));
     }
 
     /**
@@ -89,6 +98,7 @@ class ProductoController extends Controller
             'descripcion' => 'required',
             'precio' => 'required|numeric|min:1',
             'cantidad' => 'required|integer|min:1',
+            'categoria_id' => 'required|exists:categorias,id',
         ]);
 
         $producto = Producto::findOrFail($producto->id);
@@ -96,6 +106,7 @@ class ProductoController extends Controller
         $producto->descripcion = $request->descripcion;
         $producto->precio = $request->precio;
         $producto->cantidad = $request->cantidad;
+        $producto->categoria_id = $request->categoria_id;
         $producto->save();
 
         return redirect()->route('productos.index')->with('success', 'Producto actualizado con éxito.');

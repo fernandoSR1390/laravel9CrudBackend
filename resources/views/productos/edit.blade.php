@@ -42,6 +42,16 @@
                                     <div class="alert alert-danger">{{ $message }}</div>
                                 @enderror
                             </div>
+                            <div class="form-group">
+                                <label for="categoria_id">Categoría</label>
+                                <select name="categoria_id" id="categoria_id" class="form-control">
+                                    @foreach($categorias as $categoria)
+                                        <option value="{{ $categoria->id }}" {{ $producto->categoria_id == $categoria->id ? 'selected' : '' }}>
+                                            {{ $categoria->nombre }}
+                                        </option>
+                                    @endforeach
+                                </select>
+                            </div>
                             <button type="submit" class="btn btn-primary">Actualizar</button>
                         </form>
                     </div>
