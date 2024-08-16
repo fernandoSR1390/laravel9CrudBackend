@@ -65,16 +65,26 @@ If you discover a security vulnerability within Laravel, please send an e-mail t
 
 The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
 
+## Para correr el proyecto
+
+Abrir 2 terminales y escribir los siguientes comandos
+
+- npm run dev
+- php artisan serve
+
 ## Posibles Errores y Permisos
 
-- 1.- Verifica los Permisos de la Carpeta storage:
+1.- Verifica los Permisos de la Carpeta storage:
+
 - php chmod -R 775 storage
 - php chmod -R 775 bootstrap/cache
 
-- 2.- Asegúrate de que el Enlace Simbólico de storage esté Creado:
+2.- Asegúrate de que el Enlace Simbólico de storage esté Creado:
+
 - php artisan storage:link
 
-- 3.- Limpia la Caché de Vistas y Configuración:
+3.- Limpia la Caché de Vistas y Configuración:
+
 - php artisan view:clear
 - php artisan config:clear
 - php artisan cache:clear
