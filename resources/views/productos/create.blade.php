@@ -12,7 +12,7 @@
                     {{-- contenedor --}}
                     <div style="width: 100%;">
                         <h1>Crear Producto</h1>
-                        <form action="{{ route('productos.store') }}" method="POST">
+                        <form action="{{ route('productos.store') }}" method="POST" enctype="multipart/form-data">
                             @csrf
                             <div class="form-group">
                                 <label for="nombre">Nombre:</label>
@@ -49,6 +49,10 @@
                                         <option value="{{ $categoria->id }}">{{ $categoria->nombre }}</option>
                                     @endforeach
                                 </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="imagen">Imagen del Producto</label>
+                                <input type="file" name="imagen" class="form-control-file" id="imagen">
                             </div>
                             <button type="submit" class="btn btn-primary">Guardar</button>
                         </form>

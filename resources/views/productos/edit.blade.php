@@ -11,7 +11,7 @@
                 <div class="p-6 text-gray-900 dark:text-gray-100">
                     <div class="container">
                         <h1>Editar Producto</h1>
-                        <form action="{{ route('productos.update', $producto->id) }}" method="POST">
+                        <form action="{{ route('productos.update', $producto->id) }}" method="POST" enctype="multipart/form-data">
                             @csrf
                             @method('PUT')
                             <div class="form-group">
@@ -51,6 +51,13 @@
                                         </option>
                                     @endforeach
                                 </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="imagen">Imagen del Producto</label>
+                                <input type="file" name="imagen" class="form-control-file" id="imagen">
+                                @if($producto->imagen)
+                                    <img src="{{ asset('storage/' . $producto->imagen) }}" alt="Imagen del Producto" class="img-thumbnail mt-2" width="150">
+                                @endif
                             </div>
                             <button type="submit" class="btn btn-primary">Actualizar</button>
                         </form>

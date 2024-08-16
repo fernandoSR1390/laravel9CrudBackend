@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Categoria;
 use App\Models\Producto;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class ProductoController extends Controller
 {
@@ -46,6 +47,7 @@ class ProductoController extends Controller
             'precio' => 'required|numeric|min:1',
             'cantidad' => 'required|integer|min:1',
             'categoria_id' => 'required|exists:categorias,id',
+            'imagen' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
         ]);
 
         $producto = new Producto();
@@ -54,6 +56,17 @@ class ProductoController extends Controller
         $producto->precio = $request->precio;
         $producto->cantidad = $request->cantidad;
         $producto->categoria_id = $request->categoria_id;
+        $producto->imagen = $request->imagen;
+        if ($request->hasFile('imagen')) {
+            // Eliminar la imagen anterior si existe
+            if ($producto->imagen) {
+                Storage::delete('public/' . $producto->imagen);
+            }
+
+            // Guardar la nueva imagen
+            $imagePath = $request->file('imagen')->store('imagenes', 'public');
+            $producto->imagen = $imagePath;
+        }
         $producto->save();
 
         return redirect()->route('productos.index')->with('success', 'Producto creado con éxito.');
@@ -99,6 +112,7 @@ class ProductoController extends Controller
             'precio' => 'required|numeric|min:1',
             'cantidad' => 'required|integer|min:1',
             'categoria_id' => 'required|exists:categorias,id',
+            'imagen' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
         ]);
 
         $producto = Producto::findOrFail($producto->id);
@@ -107,6 +121,17 @@ class ProductoController extends Controller
         $producto->precio = $request->precio;
         $producto->cantidad = $request->cantidad;
         $producto->categoria_id = $request->categoria_id;
+        // Manejo de la imagen
+        if ($request->hasFile('imagen')) {
+            // Eliminar la imagen anterior si existe
+            if ($producto->imagen) {
+                Storage::delete('public/' . $producto->imagen);
+            }
+
+            // Guardar la nueva imagen
+            $imagePath = $request->file('imagen')->store('imagenes', 'public');
+            $producto->imagen = $imagePath;
+        }
         $producto->save();
 
         return redirect()->route('productos.index')->with('success', 'Producto actualizado con éxito.');
